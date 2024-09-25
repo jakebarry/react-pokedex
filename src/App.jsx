@@ -19,8 +19,7 @@ function App() {
   return (
     <ErrorBoundary fallback={<div>Error...</div>}>
       <Suspense fallback={<div>Loading...</div>}>
-        <div className='App'>
-
+        <div>
           {selectedPokemon ? (
             <PokemonCard parentUrl={url} selectedPokemon={selectedPokemon} clearHandler={() => setSelectedPokemon(null)}/>
           ) : (

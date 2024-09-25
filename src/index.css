@@ -8,11 +8,12 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
   /* background-color: #242424; */
-  color: black;
-  background-color: white;
+  
+  /* color: black; */
+  /* background-color: gray; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,5 +27,16 @@ body {
   flex-direction: column;
   gap: 14px;
   padding: 28px;
+  background-color: rgb(226, 232, 240);
 
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+input,
+button {
+  font-family: 'Montserrat', system-ui;
 }
