@@ -69,12 +69,12 @@ export default function PokemonGrid(props) {
     return (
         // <div className='flex flex-col gap-[8px] content-center m-0-auto w-100 max-w-[800px]'>
         <div className='flex flex-col gap-[15px] max-w-[800px] m-auto'>
-            {/* <h1 className='text-yellow-400 font-semibold text-2xl text-center uppercase'>Pokédex</h1> */}
-            <img className='mx-auto w-100 h-100' src='src/assets/pokédex_logo.png'></img>
+            <h1 className='text-black font-semibold text-2xl text-center'>Pokédex</h1>
+            {/* <img className='mx-auto w-100 h-100' src='src/assets/pokédex_logo.png'></img> */}
             <div className='flex flex-col gap-[22px]'>
                 {/* <div className='grid-cols-3 gap-[22px]'> */}
 
-                <input type='text' className='px-3 py-1 border bg-gray-300 outline-none flex flex-col max-w-[800px] rounded-[5px]' placeholder='Search pokemon...' value={search} onChange={(e) => setSearch(e.target.value)} />
+                <input type='text' className='px-3 py-1 border bg-white outline-none flex flex-col max-w-[800px] rounded-[5px]' placeholder='Search pokemon...' value={search} onChange={(e) => setSearch(e.target.value)} />
                 {/* <input type='text' className='px-3 py-1 border bg-gray-300 outline-none flex flex-col max-w-[800px] rounded-[5px]' placeholder='Search pokemon...' value={search} onChange={handleChange} /> */}
 
 
