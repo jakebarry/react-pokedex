@@ -1,6 +1,9 @@
 # React + Vite + Tailwind
 
-Install 'use' experimental 
+Install: 
+    'use' experimental 
+    Suspense
+    Tabs
 
 <!-- Currently, two official plugins are available:
 

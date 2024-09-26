@@ -8,18 +8,18 @@ async function fetchData(url) {
     return res.json()
 }
 
-function checkColour(type) {
-    // console.log(type)
-    if (type in PokemonTypeColours) {
-        // console.log(PokemonTypeColours[type]['medium'])
-        return PokemonTypeColours[type]['medium']
-    } else {
-        return
-    }
-}
+// function checkColour(type) {
+//     // console.log(type)
+//     if (type in PokemonTypeColours) {
+//         // console.log(PokemonTypeColours[type]['medium'])
+//         return PokemonTypeColours[type]['medium']
+//     } else {
+//         return
+//     }
+// }
 
 export default function PokemonGrid(props) {
-    const { handleSelectPokemon, url, selectedPokemon } = props
+    const { checkColour, handleSelectPokemon, url, selectedPokemon } = props
     const [search, setSearch] = useState('')
     let data
 
@@ -87,7 +87,7 @@ export default function PokemonGrid(props) {
                     return (
                         <div onClick={handleSelectPokemon(pokemon.name)} className='bg-white rounded-lg width-100 capitalize duration-200 cursor-pointer hover:mb-[5px] hover:mt-[-5px] hover:shadow-lg border shadow-md text-center' key={pokemonIndex}>
                             <h1 className='font-semibold text-2xl mb-2'>{pokemon.name}</h1>
-                            <img className='w-[170px] mx-auto' src={use(fetchData(url + pokemon.name)).sprites.front_default} alt={selectedPokemon}></img>
+                            <img className='w-[100px] mx-auto' src={use(fetchData(url + pokemon.name)).sprites.other['official-artwork'].front_default} alt={selectedPokemon}></img>
 
                             <div className='flex flex-row justify-center gap-4'>
                                 {use(fetchData(url + pokemon.name)).types.map((type, typeIndex) => {
