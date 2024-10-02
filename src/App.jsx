@@ -7,6 +7,7 @@ import { PokemonTypeColours } from './utils/pokemonTypeColours'
 
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
   const url = 'https://pokeapi.co/api/v2/pokemon/'
 
 
@@ -28,12 +29,24 @@ function App() {
     }
   }
 
+  function handleImage(pokemon) {
+    console.log(pokemon)
+  }
+
+  if (selectedPokemon) {
+    console.log(selectedPokemon)
+    // if (localStorage.getItem(`${pokemon}-image`)) {
+    //   setImageUrl(JSON.parse(localStorage.getItem(`${pokemon}-image`)))
+    //   console.log('FETCHED image', imageUrl)
+    // }
+  }
+
   return (
     <ErrorBoundary fallback={<div>Error...</div>}>
       <Suspense fallback={<div>Loading...</div>}>
         <div>
           {selectedPokemon ? (
-            <PokemonCard checkColour={checkColour} parentUrl={url} selectedPokemon={selectedPokemon} clearHandler={() => setSelectedPokemon(null)} />
+            <PokemonCard imageUrl={imageUrl} checkColour={checkColour} parentUrl={url} selectedPokemon={selectedPokemon} clearHandler={() => setSelectedPokemon(null)} />
           ) : (
             <PokemonGrid checkColour={checkColour} url={url} selectedPokemon={selectedPokemon} handleSelectPokemon={handleSelectPokemon} />
           )}

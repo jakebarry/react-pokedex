@@ -4,7 +4,15 @@ import { PokemonTypeColours } from '../utils/pokemonTypeColours'
 
 // Fetch data from Pokemon API 
 async function fetchData(url) {
+    // console.log(url)
     const res = await fetch(url)
+    // console.log(res.json())
+    return res.json()
+}
+
+async function fetchImage(url) {
+    const res = await fetch(url)
+
     return res.json()
 }
 
@@ -21,7 +29,7 @@ async function fetchData(url) {
 export default function PokemonGrid(props) {
     const { checkColour, handleSelectPokemon, url, selectedPokemon } = props
     const [search, setSearch] = useState('')
-    let data
+    let data, image
 
     // const handleChange = (event) => {
     //     setSearch(event.target.value)
@@ -32,16 +40,58 @@ export default function PokemonGrid(props) {
         data = JSON.parse(localStorage.getItem('pokemon-cards'))
         // console.log('FETCHED FROM CACHE', console.log(data))
     } else {
-        console.log('FETCHED FROM API')
+        // console.log('FETCHED FROM API')
         data = use(fetchData(url))
         localStorage.setItem('pokemon-cards', JSON.stringify(data))
     }
 
-    // console.log(PokemonTypeColours.normal.medium)
 
-    // const metaData = use(fetchData(url+selectedPokemon))
-    // console.log(metaData)
-    // console.log(url)
+    // Cache images
+    data.results.map((pokemon, pokemonIndex) => {
+        let image = use(fetchData(pokemon.url)).sprites.other['official-artwork'].front_default
+
+        if (localStorage.getItem(`${pokemon.name}-image`)) {
+            // console.log('Cache')
+        } else {
+            // console.log('API')
+            localStorage.setItem(`${pokemon.name}-image`, JSON.stringify(image))
+        }
+    })
+
+    // Return url for pokemon image to display
+    function pokeImage(pokemon) {
+        // console.log(pokemon)
+        // console.log(`${pokemon}-image`)
+        // console.log(localStorage.getItem(`${pokemon}-image`))
+        return JSON.parse(localStorage.getItem(`${pokemon}-image`))
+    }
+
+
+    // Only fetch a
+    function getImage(pokemon) {
+        console.log("Parameter:" + pokemon)
+        let image
+        if (localStorage.getItem(`${pokemon}-image`)) {
+            console.log('Cache')
+            image = JSON.parse(localStorage.getItem(`${pokemon}-image`))
+            // console.log('FETCHED FROM CACHE', console.log(image))
+            // console.log('FETCHED FROM CACHE')
+        } else {
+            // console.log('FETCHED FROM API')
+            console.log('API')
+            // console.log(pokemon)
+            console.log(url+pokemon)
+            console.log(use(fetchImage(url + 'ivysaur')).sprites.other['official-artwork'].front_default)
+            image = use(fetchImage(url+pokemon)).sprites.other['official-artwork'].front_default
+            console.log(image)
+            localStorage.setItem(`${pokemon}-image`, JSON.stringify(image))
+        }
+        // console.log(image)
+        // console.log(pokemon)
+        // console.log(image)
+
+        return image
+    }
 
     function p({ colour, children }) {
         const colourVariants = {
@@ -80,16 +130,18 @@ export default function PokemonGrid(props) {
 
             </div>
             {/* <div className='flex flex-col grid-cols-3 gap-[22px]'> */}
-            <div className='grid grid-cols-3 gap-[22px]'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-[22px]'>
                 {data.results.filter(val => {
                     return val.name.includes(search)
                 }).map((pokemon, pokemonIndex) => {
                     return (
                         <div onClick={handleSelectPokemon(pokemon.name)} className='bg-white rounded-lg width-100 capitalize duration-200 cursor-pointer hover:mb-[5px] hover:mt-[-5px] hover:shadow-lg border shadow-md text-center' key={pokemonIndex}>
-                            <h1 className='font-semibold text-2xl mb-2'>{pokemon.name}</h1>
-                            <img className='w-[100px] mx-auto' src={use(fetchData(url + pokemon.name)).sprites.other['official-artwork'].front_default} alt={selectedPokemon}></img>
+                            <h1 className='font-semibold text-xs sm:text-sm md:text-md lg:text-lg mb-2'>{pokemon.name}</h1>
+                            {/* <img className='w-[100px] mx-auto' src={use(fetchData(url + pokemon.name)).sprites.other['official-artwork'].front_default} alt={selectedPokemon}></img> */}
+                            {/* <img className='w-[100px] mx-auto' src={getImage(pokemon.name)} alt={selectedPokemon}></img> */}
+                            <img className='w-[100px] mx-auto' src={pokeImage(pokemon.name)} alt={selectedPokemon}></img>
 
-                            <div className='flex flex-row justify-center gap-4'>
+                            <div className='flex flex-row text-xs justify-center gap-1'>
                                 {use(fetchData(url + pokemon.name)).types.map((type, typeIndex) => {
                                     return (
                                         <div key={typeIndex}>

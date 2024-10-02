@@ -39,6 +39,7 @@ h2,
 h3,
 h4,
 p,
+b,
 input,
 button {
   font-family: 'Montserrat', system-ui;
@@ -46,4 +47,23 @@ button {
 
 .navbar.navbar-default {
   border-bottom: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+@media (min-weidth: 640px) {
+  
+}
+
+@media (min-weidth: 768px) {
+  
+}
+
+@media (min-weidth: 1024px) {
+  
 }
