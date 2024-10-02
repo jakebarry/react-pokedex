@@ -67,32 +67,6 @@ export default function PokemonGrid(props) {
     }
 
 
-    // Only fetch a
-    function getImage(pokemon) {
-        console.log("Parameter:" + pokemon)
-        let image
-        if (localStorage.getItem(`${pokemon}-image`)) {
-            console.log('Cache')
-            image = JSON.parse(localStorage.getItem(`${pokemon}-image`))
-            // console.log('FETCHED FROM CACHE', console.log(image))
-            // console.log('FETCHED FROM CACHE')
-        } else {
-            // console.log('FETCHED FROM API')
-            console.log('API')
-            // console.log(pokemon)
-            console.log(url+pokemon)
-            console.log(use(fetchImage(url + 'ivysaur')).sprites.other['official-artwork'].front_default)
-            image = use(fetchImage(url+pokemon)).sprites.other['official-artwork'].front_default
-            console.log(image)
-            localStorage.setItem(`${pokemon}-image`, JSON.stringify(image))
-        }
-        // console.log(image)
-        // console.log(pokemon)
-        // console.log(image)
-
-        return image
-    }
-
     function p({ colour, children }) {
         const colourVariants = {
             'grass': 'text-[#78C850]',

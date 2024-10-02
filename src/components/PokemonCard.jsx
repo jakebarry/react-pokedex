@@ -19,11 +19,6 @@ export default function PokemonCard(props) {
     const species = use(fetchData(speciesUrl))
     // console.log(speciesUrl)
 
-    const tabData = [
-        { label: 'Tab 1' },
-        { label: 'Tab 2' },
-        { label: 'Tab 2' },
-    ]
 
     return (
         // <div className='w-m-[1000px] w-100 mx-0 m-auto flex flex-col gap-[20px]'>
@@ -41,7 +36,7 @@ export default function PokemonCard(props) {
             <div className='flex flex-row grid grid-cols-2 mx-auto'>
                 {/* Left Column */}
                 {/* <div className='justify-between w-[50vh] h-[60vh] bg-[#78C850] rounded-l-lg mx-auto overflow-hidden'> */}
-                <div className='w-full justify-between bg-[#78C850] rounded-l-lg mx-auto overflow-hidden'>
+                <div className='w-full justify-between bg-[white] rounded-l-lg mx-auto overflow-hidden'>
                     {/* <div className='flex flex-col h-[340px]'> */}
                     <div className='flex flex-col'>
                         {console.log(data.types[0].type.name)}
