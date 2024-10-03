@@ -27,7 +27,11 @@ export default {
     //   'steel':'#B8B8D0', 
     //   'fairy': '#EE99AC',
     // },
-    extend: {},
+    extend: {
+      animation: {
+        'spin-once': 'spin 1.2s linear',
+      }
+    },
   },
   plugins: [],
 }

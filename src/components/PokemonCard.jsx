@@ -29,9 +29,9 @@ export default function PokemonCard(props) {
                 {/* <h1 className='capitalize'>
                     {selectedPokemon}
                 </h1> */}
-                <div className='cursor-pointer' onClick={clearHandler}>
-                    <i className="text-red-500 fa-regular fa-x"></i>
-                </div>
+                <div className='cursor-pointer delay-1000 duration-200 hover:animate-spin-once' onClick={clearHandler}>
+                    <i className="text-red-500 fa-regular fa-x text-[15px]"></i>
+                </div>  
             </div>
             <div className='flex flex-row grid grid-cols-2 mx-auto'>
                 {/* Left Column */}
@@ -79,8 +79,8 @@ export default function PokemonCard(props) {
                         >
                             <Tab className='p-1' eventKey="about" title="About">
                                 <div className='flex flex-wrap w-full'>
-                                    <h2 className='text-xs sm:text-xl md:text-2xl lg:text-2xl ml-1 mt-4 mb-2 font-semibold md:ml-24 sm:ml-24'>Pokémon Data</h2>
-                                    <h3 className='text-[10px] sm:text-sm ml-1'>
+                                    <h2 className='text-xs sm:text-sm md:text-xl lg:text-2xl ml-1 mt-4 mb-2 font-semibold md:ml-24 sm:ml-20'>Pokémon Data</h2>
+                                    <h3 className='text-[10px] sm:text-xs ml-1'>
                                         {/* English is not always the first entry, need to search for 'eng' language */}
                                         {species.flavor_text_entries[0].flavor_text}
                                         {/* {console.log(species.flavor_text_entries)} */}
@@ -102,7 +102,7 @@ export default function PokemonCard(props) {
                                     </h3>
 
                                     {/* Meta data */}
-                                    <div className='grid grid-cols-1 mt-4 text-[10px] sm:text-sm gap-2 ml-2'>
+                                    <div className='grid grid-cols-1 mt-4 text-[10px] sm:text-xs gap-2 ml-2'>
                                         <div className='flex flex-row gap-1'>
                                             <p className='font-semibold'>Species:</p>
                                             <p className='capitalize'>{species.genera[7].genus}</p>
@@ -152,14 +152,14 @@ export default function PokemonCard(props) {
                             {/* Currently, width expands to predetermined widths to match the 'About' tab
                             //  Need to figure out how to dynamically expand */}
                             <Tab className='p-1' eventKey="stats" title="Stats">
-                                <div className='flex flex-col w-full w-[250px] sm:w-[280px] md:w-[350px] overflow-visible'>
+                                <div className='flex flex-col w-full sm:w-[280px] md:w-[350px] overflow-visible'>
                                 {/* <div className='flex flex-col flex-wrap w-full overflow-visible'> */}
                                     <h2 className='text-xs sm:text-sm ml-5 mt-4 mb-2 text-center'>Base Stats</h2>
                                     {data.stats.map((stat, statIndex) => {
                                         return (
                                             // <div className='flex flex-row justify-between ml-3 mr-3 mb-3 text-[12px] sm:text-sm' key={statIndex}>
                                             // <div className='flex flex-row w-full justify-between text-[12px] sm:text-sm' key={statIndex}>
-                                            <div className='flex flex-row justify-between text-[10px] sm:text-sm' key={statIndex}>
+                                            <div className='flex mb-2 flex-row justify-between text-[10px] sm:text-xs' key={statIndex}>
                                                 <b className='uppercase'>{stat.stat.name}</b>
                                                 <p className=''>{stat.base_stat}</p>
                                             </div>
