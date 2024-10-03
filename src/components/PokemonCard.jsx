@@ -2,7 +2,7 @@ import React, { use } from 'react'
 // import Tabs from './Tabs'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 async function fetchData(url) {
     const res = await fetch(url)
