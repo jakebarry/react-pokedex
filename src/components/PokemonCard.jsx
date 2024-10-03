@@ -1,7 +1,9 @@
 import React, { use } from 'react'
 // import Tabs from './Tabs'
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+// import Tab from 'react-bootstrap/Tab';
+// import Tabs from 'react-bootstrap/Tabs';
+import { Tab } from 'react-bootstrap';
+import { Tabs } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 async function fetchData(url) {
@@ -31,7 +33,7 @@ export default function PokemonCard(props) {
                 </h1> */}
                 <div className='cursor-pointer delay-1000 duration-200 hover:animate-spin-once' onClick={clearHandler}>
                     <i className="text-red-500 fa-regular fa-x text-[15px]"></i>
-                </div>  
+                </div>
             </div>
             <div className='flex flex-row grid grid-cols-2 mx-auto'>
                 {/* Left Column */}
@@ -70,110 +72,110 @@ export default function PokemonCard(props) {
                 {/* Right column */}
                 {/* <div className='w-[50vh] h-[60vh] bg-white rounded-r-lg mx-auto'> */}
                 <div className='w-full bg-white rounded-r-lg mx-auto'>
-                        <Tabs
-                            defaultActiveKey="about"
-                            id="pokemon-details"
-                            className=" mb-1 text-xs sm:text-sm justify-center active:font-normal active:no-underline"
-                            variant='tabs'
-                            justify
-                        >
-                            <Tab className='p-1' eventKey="about" title="About">
-                                <div className='flex flex-wrap w-full'>
-                                    <h2 className='text-xs sm:text-sm md:text-xl lg:text-2xl ml-1 mt-4 mb-2 font-semibold md:ml-24 sm:ml-20'>Pokémon Data</h2>
-                                    <h3 className='text-[10px] sm:text-xs ml-1'>
-                                        {/* English is not always the first entry, need to search for 'eng' language */}
-                                        {species.flavor_text_entries[0].flavor_text}
-                                        {/* {console.log(species.flavor_text_entries)} */}
+                    <Tabs
+                        defaultActiveKey="about"
+                        id="pokemon-details"
+                        className=" mb-1 text-xs sm:text-sm justify-center active:font-normal active:no-underline"
+                        variant='tabs'
+                        justify
+                    >
+                        <Tab className='p-1' eventKey="about" title="About">
+                            <div className='flex flex-wrap w-full'>
+                                <h2 className='text-xs sm:text-sm md:text-xl lg:text-2xl ml-1 mt-4 mb-2 font-semibold md:ml-24 sm:ml-20'>Pokémon Data</h2>
+                                <h3 className='text-[10px] sm:text-xs ml-1'>
+                                    {/* English is not always the first entry, need to search for 'eng' language */}
+                                    {species.flavor_text_entries[0].flavor_text}
+                                    {/* {console.log(species.flavor_text_entries)} */}
 
-                                        {species.flavor_text_entries.map((language, languageIndex) => {
-                                            console.log(language.language.name)
-                                            if (language.language.name === 'eng') {
-                                                // console.log(language.language)
-                                            }
-                                        })}
+                                    {species.flavor_text_entries.map((language, languageIndex) => {
+                                        console.log(language.language.name)
+                                        if (language.language.name === 'eng') {
+                                            // console.log(language.language)
+                                        }
+                                    })}
 
 
-                                        {/* Find english language description */}
-                                        {/* {
+                                    {/* Find english language description */}
+                                    {/* {
                                         species.flavor_text_entries.find(
                                             (text) => text.language.name === "en"
                                         )?.flavorText
                                     } */}
-                                    </h3>
+                                </h3>
 
-                                    {/* Meta data */}
-                                    <div className='grid grid-cols-1 mt-4 text-[10px] sm:text-xs gap-2 ml-2'>
-                                        <div className='flex flex-row gap-1'>
-                                            <p className='font-semibold'>Species:</p>
-                                            <p className='capitalize'>{species.genera[7].genus}</p>
-                                        </div>
-                                        <div className='flex flex-ro gap-1'>
-                                            <p className='font-semibold'>Height:</p>
-                                            <p className=''>{'0.' + data.height + ' m'}</p>
-                                        </div>
-                                        <div className='flex flex-row gap-1'>
-                                            <p className='font-semibold'>Weight:</p>
-                                            <p className=''>{'0.' + data.weight + ' kg'}</p>
-                                        </div>
-                                        {/* Abilities */}
-                                        <div className='flex flex-col sm:flex-row gap-1'>
-                                            <p className='font-semibold'>Abilities:</p>
-                                            {/* {console.log(data.abilities)} */}
-                                            {/* <p className='ml-1 mr-5'>{data.abilities.ability.name}</p> */}
+                                {/* Meta data */}
+                                <div className='grid grid-cols-1 mt-4 text-[10px] sm:text-xs gap-2 ml-2'>
+                                    <div className='flex flex-row gap-1'>
+                                        <p className='font-semibold'>Species:</p>
+                                        <p className='capitalize'>{species.genera[7].genus}</p>
+                                    </div>
+                                    <div className='flex flex-ro gap-1'>
+                                        <p className='font-semibold'>Height:</p>
+                                        <p className=''>{'0.' + data.height + ' m'}</p>
+                                    </div>
+                                    <div className='flex flex-row gap-1'>
+                                        <p className='font-semibold'>Weight:</p>
+                                        <p className=''>{'0.' + data.weight + ' kg'}</p>
+                                    </div>
+                                    {/* Abilities */}
+                                    <div className='flex flex-col sm:flex-row gap-1'>
+                                        <p className='font-semibold'>Abilities:</p>
+                                        {/* {console.log(data.abilities)} */}
+                                        {/* <p className='ml-1 mr-5'>{data.abilities.ability.name}</p> */}
 
-                                            {data.abilities.map((ability, abilityIndex) => {
-                                                return (
-                                                    <div className='' key={abilityIndex}>
-                                                        {/* <div className='flex flex-row justify-between text-[10px]' key={abilityIndex}> */}
-                                                        <p className='text-center capitalize'>{ability.ability.name}</p>
-                                                    </div>
-                                                )
-                                            })}
+                                        {data.abilities.map((ability, abilityIndex) => {
+                                            return (
+                                                <div className='' key={abilityIndex}>
+                                                    {/* <div className='flex flex-row justify-between text-[10px]' key={abilityIndex}> */}
+                                                    <p className='text-center capitalize'>{ability.ability.name}</p>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className='flex flex-col sm:flex-row gap-1 mb-3'>
+                                        <p className='font-semibold'>Gender:</p>
+                                        {/* <p className='ml-6 mr-5'>{'M: ' + (1 - species.gender_rate / 8) * 100 + ' F: ' + (species.gender_rate / 8) * 100}</p> */}
+                                        {/* <div className='flex flex-row'> */}
+                                        <div className='text-center'>
+                                            <p className=''>{'♂: ' + (1 - species.gender_rate / 8) * 100 + '%'}</p>
+                                            <p className=''>{'♀: ' + (species.gender_rate / 8) * 100 + '%'}</p>
                                         </div>
-                                        <div className='flex flex-col sm:flex-row gap-1 mb-3'>
-                                            <p className='font-semibold'>Gender:</p>
-                                            {/* <p className='ml-6 mr-5'>{'M: ' + (1 - species.gender_rate / 8) * 100 + ' F: ' + (species.gender_rate / 8) * 100}</p> */}
-                                            {/* <div className='flex flex-row'> */}
-                                            <div className='text-center'>
-                                                <p className=''>{'♂: ' + (1 - species.gender_rate / 8) * 100 + '%'}</p>
-                                                <p className=''>{'♀: ' + (species.gender_rate / 8) * 100 + '%'}</p>
-                                            </div>
-                                        </div>
-                                        {/* <div className='ml-5'>
+                                    </div>
+                                    {/* <div className='ml-5'>
                                         <p>Species:</p>
                                     </div>
                                     <div className='mr-5 ml-5 capitalize'>
                                         <p>{species.genera[7].genus}</p>
                                     </div> */}
-                                    </div>
                                 </div>
+                            </div>
 
-                            </Tab>
-                            {/* Currently, width expands to predetermined widths to match the 'About' tab
+                        </Tab>
+                        {/* Currently, width expands to predetermined widths to match the 'About' tab
                             //  Need to figure out how to dynamically expand */}
-                            <Tab className='p-1' eventKey="stats" title="Stats">
-                                <div className='flex flex-col w-full sm:w-[280px] md:w-[350px] overflow-visible'>
+                        <Tab className='p-1' eventKey="stats" title="Stats">
+                            <div className='flex flex-col w-full sm:w-[280px] md:w-[350px] overflow-visible'>
                                 {/* <div className='flex flex-col flex-wrap w-full overflow-visible'> */}
-                                    <h2 className='text-xs sm:text-sm ml-5 mt-4 mb-2 text-center'>Base Stats</h2>
-                                    {data.stats.map((stat, statIndex) => {
-                                        return (
-                                            // <div className='flex flex-row justify-between ml-3 mr-3 mb-3 text-[12px] sm:text-sm' key={statIndex}>
-                                            // <div className='flex flex-row w-full justify-between text-[12px] sm:text-sm' key={statIndex}>
-                                            <div className='flex mb-2 flex-row justify-between text-[10px] sm:text-xs' key={statIndex}>
-                                                <b className='uppercase'>{stat.stat.name}</b>
-                                                <p className=''>{stat.base_stat}</p>
-                                            </div>
-                                        )
-                                    })}
-                                </div>
-                            </Tab>
-                        </Tabs>
-                    </div>
+                                <h2 className='text-xs sm:text-sm ml-5 mt-4 mb-2 text-center'>Base Stats</h2>
+                                {data.stats.map((stat, statIndex) => {
+                                    return (
+                                        // <div className='flex flex-row justify-between ml-3 mr-3 mb-3 text-[12px] sm:text-sm' key={statIndex}>
+                                        // <div className='flex flex-row w-full justify-between text-[12px] sm:text-sm' key={statIndex}>
+                                        <div className='flex mb-2 flex-row justify-between text-[10px] sm:text-xs' key={statIndex}>
+                                            <b className='uppercase'>{stat.stat.name}</b>
+                                            <p className=''>{stat.base_stat}</p>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </Tab>
+                    </Tabs>
+                </div>
 
-                    {/* {console.log(species.flavor_text_entries[0].flavor_text)} */}
-                    {/* First row */}
-                    {/* <div className='flex flex-col gap-1'> */}
-                        {/* <h1 className='text-center mt-4 font-medium text-lg'>Data</h1>
+                {/* {console.log(species.flavor_text_entries[0].flavor_text)} */}
+                {/* First row */}
+                {/* <div className='flex flex-col gap-1'> */}
+                {/* <h1 className='text-center mt-4 font-medium text-lg'>Data</h1>
                     <h3 className='text-xs ml-5'>{species.flavor_text_entries[0].flavor_text}</h3>
                     <h2 className='text-sm ml-5 mt-4 mb-2'>Base Stats</h2>
                     {data.stats.map((stat, statIndex) => {
@@ -184,13 +186,13 @@ export default function PokemonCard(props) {
                             </div>
                         )
                     })} */}
-                    {/* </div> */}
-                    {/* Second row */}
-                    {/* <div className='p-5'> */}
-                        {/* <h3 className='text-center p-5'>Types</h3> */}
+                {/* </div> */}
+                {/* Second row */}
+                {/* <div className='p-5'> */}
+                {/* <h3 className='text-center p-5'>Types</h3> */}
 
-                        {/* Row of types */}
-                        {/* <div className='flex flex-row justify-between mr-5 ml-5'>
+                {/* Row of types */}
+                {/* <div className='flex flex-row justify-between mr-5 ml-5'>
                             {data.types.map((type, typeIndex) => {
                                 return (
                                     <div key={typeIndex}>
@@ -203,7 +205,7 @@ export default function PokemonCard(props) {
                                 )
                             })}
                         </div> */}
-                    {/* </div> */}
+                {/* </div> */}
             </div>
         </div >
     )
