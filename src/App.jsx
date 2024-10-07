@@ -8,7 +8,12 @@ import { PokemonTypeColours } from './utils/pokemonTypeColours'
 function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null)
   const [imageUrl, setImageUrl] = useState(null)
-  const url = 'https://pokeapi.co/api/v2/pokemon/'
+  // const url = 'https://pokeapi.co/api/v2/pokemon/'
+  // const url = 'https://pokeapi.co/api/v2/pokemon?limit=45'
+  const url = 'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+
+  // let limit, offset = 151
+  // const url = `https://pokeapi.co/api/v2/pokemon?${limit}=151&${offset}=151`
 
 
 
@@ -33,13 +38,13 @@ function App() {
     console.log(pokemon)
   }
 
-  if (selectedPokemon) {
-    console.log(selectedPokemon)
+  // if (selectedPokemon) {
+    // console.log(selectedPokemon)
     // if (localStorage.getItem(`${pokemon}-image`)) {
     //   setImageUrl(JSON.parse(localStorage.getItem(`${pokemon}-image`)))
     //   console.log('FETCHED image', imageUrl)
     // }
-  }
+  // }
 
   return (
     <ErrorBoundary fallback={<div>Error...</div>}>
