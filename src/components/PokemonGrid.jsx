@@ -13,6 +13,8 @@ export default function PokemonGrid(props) {
     const [search, setSearch] = useState('');
     const [data, setData] = useState(null); // State to store fetched Pokemon data
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(0); // Track the current page
+    const itemsPerPage = 20 // Set the number of Pokemon to load 
 
     // Fetch the main Pokemon list and cache in localStorage
     useEffect(() => {
@@ -44,12 +46,19 @@ export default function PokemonGrid(props) {
     }, [data]);
 
     // Helper function to get cached Pokemon image
+    // Need to check if localstore exists, and if not, then fetch data
+    // Or only render after local storage is set
     function pokeImage(pokemonName) {
         // console.log(localStorage.getItem(`${pokemonName}-image`))
         return localStorage.getItem(`${pokemonName}-image`);
     }
 
     if (loading) return <p>Loading...</p>;
+
+    // Calculate the Pokemon to display
+    const filteredData = data.results.filter(val => val.name.includes(search));
+    // E.g. (1*20, 2*20), (2*20, 3*20)
+    const displayedData = filteredData.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
 
     return (
         <div className='flex flex-col gap-[15px] max-w-[800px] m-auto'>
@@ -64,9 +73,7 @@ export default function PokemonGrid(props) {
                 />
             </div>
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-[22px]'>
-                {data.results
-                    .filter(val => val.name.includes(search))
-                    .map((pokemon, pokemonIndex) => {
+                {displayedData.map((pokemon, pokemonIndex) => {
                         return (
                             <div
                                 onClick={handleSelectPokemon(pokemon.name)}
@@ -99,6 +106,23 @@ export default function PokemonGrid(props) {
                         );
                     })}
             </div>
+            {filteredData.length > (currentPage + 1) * itemsPerPage && (
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    className='mt-4 bg-blue-500 text-white px-4 py-2 rounded'
+                >
+                    Load more
+                </button>
+            )}
+            {currentPage > 6 && (
+                <button
+                    onClick={() => setCurrentPage(0)}
+                    className='mt-4 bg-blue-500 text-white px-4 py-2 rounded'
+                >
+                    Load again
+                </button>
+            )}
+            
         </div>
     );
 }
